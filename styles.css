@@ -1,3 +1,4 @@
+/*Why the name? Because this was inspired by a cool fictional website from a certain very depresssing VN.*/
 
 @font-face {
     font-family: 'Roboto';
@@ -60,12 +61,17 @@
     margin: 0;
 }
 
+/*html, body{
+    overflow-x: hidden;
+} Adding this fixed the issue with displaying portrait mode on mobile devices, but also prevented the sticky nav from working. The best solution is in HTML: add "minimum-scale=1.0" just after the "initial-scale=1.0" bit in the meta viewport so on tag. This fixes it by preventing the browser from resizing hte viewport to admit the overflowed content.*/
+
 body{
     background-color: #000;
     font-family: 'Roboto', Arial, sans-serif;
     color: #CBCBCB;
     margin:0;
     padding:0;
+    /*position: absolute; might fix a bug on mobile screens?*/
 }
 
 /* Standard color is #CBCBCB */
@@ -187,29 +193,12 @@ figcaption{
 }
 
 figure > img {
-    max-width: 400px;
-    max-height: 400px; /*Meant to be overriden on an image-by-image basis, here just so things don't blow up*/
+    width: 250px
+    /* margin: 0 auto; */
+    /*max-height: 400px; Meant to be overriden on an image-by-image basis, here just so things don't blow up*/
 }
 
 
-
-header{
-    /* background-color: #EEE; */
-    background-color: #1D1D1D ;
-    color: #DDD;
-    padding: 30px 0 10px 0;
-    height: 7vh; /* Maybe find way with fit-content/max content and max()/min() to get the header to resize depending on the title*/
-    min-height: 50px;
-    position: sticky;
-    top:0;
-    min-height:60px;
-    margin: 0 !important; /*Why is the !important here again?*/
-    /* display: flex; */
-}
-
-header h1{
-    color: #DDD;
-}
 
 h1{
     font-size: 3em;
@@ -225,7 +214,29 @@ img{ /* width and height are to be overridden on an image-by-image basis. These 
     border:2px solid #DDD;
     border-radius: 3px;
     width: 400px;
-    height: 400px; 
+}
+
+.tinted-background{
+    background-color: rgba(0,0,0,0.65);
+    background-blend-mode: multiply;
+}
+
+header{
+    /* background-color: #EEE; */
+    background-color: #1D1D1D ;
+    color: #DDD;
+    padding: 20px 0 10px 0;
+    height: 7vh; /* Maybe find way with fit-content/max content and max()/min() to get the header to resize depending on the title*/
+    min-height: 50px;
+    position: sticky;
+    top:0;
+    min-height:60px;
+    margin: 0 ; /*Why was the !important here again? !important*/
+    /* display: flex; */
+}
+
+header h1{
+    color: #DDD;
 }
 
 /* End default element styles */
@@ -273,9 +284,6 @@ nav a:active{
 
 
 /* hr divs */
-div{
-    margin: 10px auto;
-}
 
 div.small-hr-div{
     width:40px;
@@ -444,11 +452,11 @@ main section{
 /*  */
 
 /* Button styles */
-.button{
-    width: clamp(50px,100px,300px);
-    /* min-width:100px;
+/* min-width:100px;
     height: 34px; 
     max-width: 300px; */
+.button{
+    width: clamp(50px,100px,300px);
     overflow: hidden;
     font-size: 12pt;
     color: #FFF;
@@ -459,21 +467,17 @@ main section{
     text-align:center;
     padding: 0.5rem 0;
     font-weight: 700;
-    margin-top: 30px;
+    margin-top: 20px;
     text-decoration-skip-ink: all;
     font-style: normal;
 }
 
 .button-anchor{
     grid-column: 2 / span 1;
-}
-
-.button-anchor a{
     text-decoration: none;
     display: block;
-    margin: 30px auto 0 auto;
+    margin: 0 auto;
     width: fit-content;
-    
 }
 
 /* .button span{
@@ -514,6 +518,7 @@ aside{
     font-style: italic;
     /* width: min(fit-content,20%);
     height: min(fit-content,20%); */
+    margin: 1vw auto; /*Trying this out because it worked well in my personal github site. Allows asides to line up with articles (stand by themselves).*/
 
 
 
@@ -585,7 +590,7 @@ footer ul{
         width: 100%;
     }
     header h1{
-        font-size: 1.5em; //Maybe make this look nicer somehow
+        font-size: 1.5em;
         /* margin: 1vw auto; */
         /* align-self: center; */
     }
@@ -595,5 +600,53 @@ footer ul{
     } */
 }
 
+@media only screen and (max-height: 1100px){
+    header{
+       padding-top: 20px;
+    }
+    header h1{
+        font-size: 1.5em;
+        /* margin: 1vw auto; */
+        /* align-self: center; */
+    }
+}
+
+@media only screen and (max-width: 450px){
+    header h1{
+        font-size: 1em;
+    }
+    nav{
+        font-size: 0.75em;
+    }
+}
+
+/* Handle the basics of stuff that isn't semantic. */
+body h1, body h2, body h3, body h4, body h5,body h6{
+    margin: 7px;
+}
+
+body p{
+    margin: 5px;
+}
+
+/* @media only screen and (max-width: 700px) and (orientation: landscape){
+    header {
+        /* font-size: 1.25em; */
+        /* padding-bottom: 30px; */
+        /* height: 8vw; */
+    
+    /* header h1{
+        margin-bottom: 30px;
+    } */
+
+
 /* Add another breakpoint for  < 400 px (phones) which fixes the header and whatever's going on with the page only taking up part of the screen.*/
 /* Also make all heading font sizes responsive with em | THEY'RE ALREADY IN EM THERE's NO NEED FOR THAT*/
+
+/* The formatting for making an image the background of a div
+#img-id{
+    background-image: url('../');
+    background-size: cover;
+    background-position:center
+}
+*/
