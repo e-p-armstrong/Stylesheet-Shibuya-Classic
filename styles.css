@@ -410,6 +410,10 @@ main section{
     grid-column: 2 / span 1;
 }
 
+.all-c{
+    grid-column: 1 / span 3;
+}
+
 .two-rows{
     grid-row: span 2;
 }
@@ -452,9 +456,11 @@ main section{
 /*  */
 
 /* Button styles */
+/* TO IMPROVE: Combine the .button-anchor and .button classes into one. So that all one needs to make a button is an anchor with the .button class*/
 /* min-width:100px;
     height: 34px; 
     max-width: 300px; */
+
 .button{
     width: clamp(50px,100px,300px);
     overflow: hidden;
@@ -470,19 +476,12 @@ main section{
     margin-top: 20px;
     text-decoration-skip-ink: all;
     font-style: normal;
-}
-
-.button-anchor{
     grid-column: 2 / span 1;
     text-decoration: none;
     display: block;
-    margin: 0 auto;
+    padding: 10px 15px;
     width: fit-content;
 }
-
-/* .button span{
-    
-} */
 
 .button:hover{
     background-color: #666;
