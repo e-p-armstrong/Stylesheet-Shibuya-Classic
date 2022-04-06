@@ -486,11 +486,13 @@ main section{
 .button:hover{
     background-color: #666;
     transition: background-color 0.2s;
+    color: #FFF;
 }
 
 .button:active{
     transition: background-color 0s;
     background-color: #999;
+    color: #FFF;
 }
 
 /* End button styles */
